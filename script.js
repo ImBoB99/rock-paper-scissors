@@ -8,36 +8,7 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function playRound(playerSelection, computerSelection) {
-
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
-
-    if (playerSelection === computerSelection) {
-        container.textContent = "It's a draw";
-        
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        container.textContent = "You lose";
-        computerScore++;
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        container.textContent = "You lose";
-        computerScore++;
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        container.textContent = "You lose";
-        computerScore++;
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        container.textContent = "You win";
-        playerScore++;
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        container.textContent = "You win";
-        playerScore++;
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        container.textContent = "You win";
-        playerScore++;
-    }
-
-    roundResults.textContent = `Player Score: ${playerScore}` + `Computer Score: ${computerScore}`;
-
+function checkScore() {
     if (playerScore === 5) {
         roundResults.textContent = "The player has won the game!";
         playerScore = 0;
@@ -48,6 +19,39 @@ function playRound(playerSelection, computerSelection) {
         playerScore = 0;
         computerScore = 0;
     }
+}
+
+function updateResult(result) {
+    container.textContent = result;
+}
+
+function scoreboard() {
+    roundResults.textContent = `Player Score: ${playerScore}` + `Computer Score: ${computerScore}`;
+}
+
+function playRound(playerSelection, computerSelection) {
+
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
+
+    if (playerSelection === computerSelection) {
+        updateResult("It's a draw");
+        
+    } else if (
+        (playerSelection === "rock" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "scissors") ||
+        (playerSelection === "scissors" && computerSelection === "rock")
+    ) {
+        updateResult("You lose");
+        computerScore++;
+    } else {
+        updateResult("You win");
+        playerScore++;
+    }
+
+    scoreboard();
+    checkScore();
+
 }
 
 
