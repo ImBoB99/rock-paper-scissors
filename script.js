@@ -14,29 +14,61 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
 
     if (playerSelection === computerSelection) {
-        console.log("It's a draw");
+        container.textContent = "It's a draw";
         
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        console.log("You lose");
+        container.textContent = "You lose";
         computerScore++;
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        console.log("You lose");
+        container.textContent = "You lose";
         computerScore++;
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        console.log("You lose");
+        container.textContent = "You lose";
         computerScore++;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        console.log("You win");
+        container.textContent = "You win";
         playerScore++;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        console.log("You win");
+        container.textContent = "You win";
         playerScore++;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        console.log("You win");
+        container.textContent = "You win";
         playerScore++;
+    }
+
+    roundResults.textContent = `Player Score: ${playerScore}` + `Computer Score: ${computerScore}`;
+
+    if (playerScore === 5) {
+        roundResults.textContent = "The player has won the game!";
+        playerScore = 0;
+        computerScore = 0;
+
+    } else if (computerScore === 5) {
+        roundResults.textContent = "The computer has won the game!";
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 
+document.getElementById("rock").addEventListener("click", function () {
+    let computerSelection = getComputerChoice();
+    playRound("rock", computerSelection);
+})
+
+document.getElementById("paper").addEventListener("click", function () {
+    let computerSelection = getComputerChoice();
+    playRound("paper", computerSelection);
+})
+
+document.getElementById("scissors").addEventListener("click", function () {
+    let computerSelection = getComputerChoice();
+    playRound("scissors", computerSelection);
+})
+
+const container = document.querySelector(".container");
+const roundResults = document.querySelector(".roundresults");
+
+/* Plays the game five rounds and reports who won
 function game() {
 
     for (let i = 0; i <= 5; i++) {
@@ -59,3 +91,4 @@ function game() {
         }
     }
 }
+*/
