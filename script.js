@@ -50,6 +50,23 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+const container = document.querySelector(".container");
+const roundResults = document.querySelector(".roundresults");
+
+//Refactored
+
+const buttons = document.querySelectorAll(".choice");
+
+buttons.forEach(button => {
+  button.addEventListener("click", function () {
+    const choice = this.getAttribute("data-choice");
+    let computerSelection = getComputerChoice();
+    playRound(choice, computerSelection);
+  });
+});
+
+/* Old code
 document.getElementById("rock").addEventListener("click", function () {
     let computerSelection = getComputerChoice();
     playRound("rock", computerSelection);
@@ -64,31 +81,4 @@ document.getElementById("scissors").addEventListener("click", function () {
     let computerSelection = getComputerChoice();
     playRound("scissors", computerSelection);
 })
-
-const container = document.querySelector(".container");
-const roundResults = document.querySelector(".roundresults");
-
-/* Plays the game five rounds and reports who won
-function game() {
-
-    for (let i = 0; i <= 5; i++) {
-        if (i == 5) {
-            if (playerScore == computerScore) {
-                console.log("The game was a draw");
-            } else if (playerScore < computerScore){
-                console.log("Computer won the game");
-            } else {
-                console.log("Player won the game");
-            }
-            playerScore = 0;
-            computerScore = 0;
-        } else {
-            let playerSelection = prompt("Pick rock paper or scissors");
-            let computerSelection = getComputerChoice();
-    
-            playRound(playerSelection, computerSelection);
-            console.log("Scores ---- " + "Player: " + playerScore + " " + "Computer: " + computerScore);
-        }
-    }
-}
 */
