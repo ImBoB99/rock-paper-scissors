@@ -10,14 +10,16 @@ function getComputerChoice() {
 
 function checkScore() {
     if (playerScore === 5) {
-        roundResults.textContent = "The player has won the game!";
+        roundResults.innerHTML = "The player has won the game!<br>Refresh the page to play again";
         playerScore = 0;
         computerScore = 0;
+        disableButtons();
 
     } else if (computerScore === 5) {
-        roundResults.textContent = "The computer has won the game!";
+        roundResults.innerHTML = "The computer has won the game!<br>Refresh the page to play again";
         playerScore = 0;
         computerScore = 0;
+        disableButtons();
     }
 }
 
@@ -26,7 +28,13 @@ function updateResult(result) {
 }
 
 function scoreboard() {
-    roundResults.textContent = `Player Score: ${playerScore}` + `Computer Score: ${computerScore}`;
+    roundResults.innerHTML = `Player Score: ${playerScore}` + "<br>" + `Computer Score: ${computerScore}`;
+}
+
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true;
+    })
 }
 
 function playRound(playerSelection, computerSelection) {
